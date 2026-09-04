@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Väder Dashboard - Värnamo</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      padding: 1.5rem;
+      gap: 1.5rem;
+    }
+
+    /* Vänstra panelen: Väderdata och klocka */
+    .left-panel {
+      flex: 0 0 380px;
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid #334155;
+      border-radius: 1.25rem;
+      padding: 2.5rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+    .location { font-size: 1.4rem; font-weight: 700; color: #38bdf8; text-transform: uppercase; letter-spacing: 2px; }
+    .time { font-size: 4rem; font-weight: 700; line-height: 1.1; margin-top: 0.5rem; }
+    .date { font-size: 1.2rem; color: #94a3b8; margin-bottom: 2rem; }
+    .temp { font-size: 5.5rem; font-weight: 800; line-height: 1; }
+    .condition { font-size: 1.5rem; color: #e2e8f0; margin-top: 0.5rem; }
+    .meta { display: flex; flex-direction: column; gap: 0.75rem; font-size: 1.2rem; color: #94a3b8; margin-top: 1.5rem; }
+    .meta span { display: flex; justify-content: space-between; }
+    .meta strong { color: #f8fafc; }
+
+    /* Högra panelen: Väderkarta */
+    .map-container {
+      flex: 1;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      border: 1px solid #334155;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      background: #1e293b;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="left-panel">
+    <div>
+      <div class="location">Värnamo</div>
+      <div class="time" id="time">--:--</div>
+      <div class="date" id="date">Laddar datum...</div>
+    </div>
+
+    <div>
+      <div class="temp" id="temp">--°C</div>
+      <div class="condition" id="condition">Hämtar prognos...</div>
+    </div>
+
+    <div class="meta">
+      <span>Vind: <strong id="wind">-- m/s</strong></span>
+      <span>Luftfuktighet: <strong id="humidity">--%</strong></span>
+    </div>
+  </div>
+
+  <div class="map-container">
+    <!-- Centrerad över Värnamo (lat: 57.186, lon: 14.040) med regnradar aktiverad -->
+    <iframe 
+      src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m%2Fs&zoom=7&overlay=radar&product=radar&level=surface&lat=57.186&lon=14.040" 
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <script>
+    const LAT = 57.1864;
+    const LON = 14.0403;
+
+    const weatherCodes = {
+      0: "Klart",
+      1: "Mestadels klart", 2: "Halvklart", 3: "Molnigt",
+      45: "Dimma", 48: "Rimfrostdimma",
+      51: "Lätt duggregn", 53: "Duggregn", 55: "Tätt duggregn",
+      61: "Lätt regn", 63: "Regn", 65: "Kraftigt regn",
+      71: "Lätt snöfall", 73: "Snöfall", 75: "Kraftigt snöfall",
+      80: "Lätta regnskurar", 81: "Regnskurar", 82: "Kraftiga skurar",
+      95: "Åskväder"
+    };
+
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('time').textContent = now.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('date').textContent = now.toLocaleDateString('sv-SE', { weekday: 'long', day: 'numeric', month: 'long' });
+    }
+
+    async function fetchWeather() {
+      try {
+        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&wind_speed_unit=ms`);
+        const data = await res.json();
+        const cur = data.current;
+
+        document.getElementById('temp').textContent = `${Math.round(cur.temperature_2m)}°C`;
+        document.getElementById('condition').textContent = weatherCodes[cur.weather_code] || "Okänt läge";
+        document.getElementById('wind').textContent = `${Math.round(cur.wind_speed_10m)} m/s`;
+        document.getElementById('humidity').textContent = `${cur.relative_humidity_2m}%`;
+      } catch (err) {
+        document.getElementById('condition').textContent = "Kunde inte hämta data";
+      }
+    }
+
+    setInterval(updateClock, 1000);
+    setInterval(fetchWeather, 15 * 60 * 1000);
+
+    updateClock();
+    fetchWeather();
+  </script>
+</body>
+</html>

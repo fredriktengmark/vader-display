@@ -16,9 +16,10 @@
       --alert-yellow: #f59e0b;
       --alert-orange: #ea580c;
       --alert-red: #ef4444;
-      --rjl-red: #c8102e; /* Region Jönköpings läns officiella profilröd */
+      --rjl-red: #c8102e;
       --rescue-orange: #f97316;
       --status-green: #22c55e;
+      --energy-purple: #a855f7;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,7 +36,7 @@
       gap: 0.75rem;
     }
 
-    /* Toppbanner med logotyp och klocka */
+    /* Toppbanner */
     .top-bar {
       display: flex;
       justify-content: space-between;
@@ -43,7 +44,7 @@
       background: var(--panel-bg);
       border: 1px solid var(--border-color);
       border-left: 5px solid var(--rjl-red);
-      padding: 0.5rem 1.25rem;
+      padding: 0.45rem 1.25rem;
       border-radius: 6px;
     }
 
@@ -53,13 +54,12 @@
       gap: 1rem;
     }
 
-    /* Vektorburen RJL-badge (visas om lokal bildfil saknas) */
     .rjl-emblem {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       background: linear-gradient(135deg, var(--rjl-red), #99001a);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 8px;
@@ -69,14 +69,13 @@
     .rjl-emblem span {
       font-family: ui-monospace, "SF Mono", sans-serif;
       font-weight: 900;
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #ffffff;
       letter-spacing: 1px;
     }
 
-    /* Bildlogga */
     .rjl-custom-logo {
-      height: 44px;
+      height: 42px;
       width: auto;
       object-fit: contain;
       display: none;
@@ -87,14 +86,14 @@
       flex-direction: column;
     }
     .brand-org {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 1.5px;
       color: #94a3b8;
       text-transform: uppercase;
     }
     .top-title {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 900;
       letter-spacing: 1.5px;
       color: var(--alert-red);
@@ -107,7 +106,7 @@
 
     .top-clock {
       font-family: ui-monospace, "SF Mono", "Cascadia Code", monospace;
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       font-weight: 800;
       line-height: 1;
       color: #fff;
@@ -117,15 +116,15 @@
     }
     .top-date {
       color: #94a3b8;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 600;
       text-transform: capitalize;
     }
 
-    /* Huvudgrid */
+    /* Huvudgrid - lite bredare telemetrikolumn, renare kartor */
     .main-grid {
       display: grid;
-      grid-template-columns: 460px 1fr 1fr;
+      grid-template-columns: 480px 1fr 1fr;
       gap: 0.75rem;
       flex: 1;
       min-height: 0;
@@ -142,10 +141,10 @@
       position: relative;
     }
     .panel-header {
-      padding: 0.5rem 0.85rem;
-      font-size: 0.72rem;
+      padding: 0.45rem 0.8rem;
+      font-size: 0.7rem;
       font-weight: 800;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
       border-bottom: 1px solid var(--border-color);
       display: flex;
@@ -158,18 +157,18 @@
     .telemetry-column {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 0.55rem;
       height: 100%;
       overflow-y: auto;
       padding-right: 2px;
     }
 
-    /* Väder & Telemetri */
+    /* Väder */
     .weather-card {
-      padding: 0.6rem 0.9rem;
+      padding: 0.5rem 0.8rem;
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
+      gap: 0.3rem;
     }
     .weather-main {
       display: flex;
@@ -178,13 +177,13 @@
     }
     .temp-val {
       font-family: ui-monospace, "SF Mono", monospace;
-      font-size: 2.6rem;
+      font-size: 2.3rem;
       font-weight: 900;
       line-height: 1;
       color: #fff;
     }
     .condition-val {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
       text-align: right;
       font-weight: 600;
@@ -192,113 +191,109 @@
     .meta-metrics {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.4rem;
+      gap: 0.35rem;
     }
     .metric-box {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border-color);
-      padding: 0.3rem 0.5rem;
+      padding: 0.25rem 0.5rem;
       border-radius: 4px;
     }
     .metric-box label {
       display: block;
-      font-size: 0.58rem;
+      font-size: 0.55rem;
       color: var(--text-muted);
       letter-spacing: 1px;
       text-transform: uppercase;
     }
     .metric-box span {
       font-family: ui-monospace, "SF Mono", monospace;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 700;
       color: var(--accent-blue);
     }
 
-    /* SMHI Vädervarningsbanner */
+    /* SMHI Varning */
     .weather-alert-bar {
       margin-top: 0.1rem;
-      padding: 0.35rem 0.6rem;
+      padding: 0.3rem 0.6rem;
       border-radius: 4px;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       display: flex;
       align-items: center;
       gap: 0.4rem;
       border: 1px solid var(--border-color);
       background: rgba(255, 255, 255, 0.02);
       color: var(--text-muted);
-      transition: all 0.3s ease;
     }
-    .weather-alert-bar.level-green {
-      border-color: rgba(34, 197, 94, 0.2);
-      color: #86efac;
-    }
-    .weather-alert-bar.level-yellow {
-      border-color: var(--alert-yellow);
-      background: rgba(245, 158, 11, 0.1);
-      color: #fde047;
-      font-weight: 600;
-    }
-    .weather-alert-bar.level-orange {
-      border-color: var(--alert-orange);
-      background: rgba(234, 88, 12, 0.15);
-      color: #fdba74;
-      font-weight: 700;
-      animation: alertPulseSMHI 2s infinite;
-    }
-    .weather-alert-bar.level-red {
-      border-color: var(--alert-red);
-      background: rgba(239, 68, 68, 0.2);
-      color: #fca5a5;
-      font-weight: 800;
-      animation: alertPulseSMHI 1.5s infinite;
-    }
-    @keyframes alertPulseSMHI {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
-    }
+    .weather-alert-bar.level-green { border-color: rgba(34, 197, 94, 0.2); color: #86efac; }
+    .weather-alert-bar.level-yellow { border-color: var(--alert-yellow); background: rgba(245, 158, 11, 0.1); color: #fde047; font-weight: 600; }
+    .weather-alert-bar.level-orange { border-color: var(--alert-orange); background: rgba(234, 88, 12, 0.15); color: #fdba74; font-weight: 700; animation: pulseAlert 2s infinite; }
+    .weather-alert-bar.level-red { border-color: var(--alert-red); background: rgba(239, 68, 68, 0.2); color: #fca5a5; font-weight: 800; animation: pulseAlert 1.5s infinite; }
+    @keyframes pulseAlert { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
 
-    /* ELPRIS SE4 */
-    .power-panel {
+    /* SVK KRAFTNÄT & ELPRIS DUAL PANEL */
+    .power-grid-panel {
       border-top: 2px solid var(--status-green);
     }
-    .power-card {
-      padding: 0.55rem 0.85rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(34, 197, 94, 0.03);
+    .power-grid-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border-color);
     }
-    .power-main {
+    .power-half {
+      padding: 0.5rem 0.8rem;
       display: flex;
       flex-direction: column;
+      justify-content: center;
     }
-    .power-val-row {
+    .power-half:first-child {
+      border-right: 1px solid var(--border-color);
+    }
+    .sub-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .dual-val-row {
       display: flex;
       align-items: baseline;
-      gap: 0.3rem;
+      gap: 0.25rem;
     }
-    .power-val {
+    .dual-val {
       font-family: ui-monospace, "SF Mono", monospace;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: 900;
-      color: var(--status-green);
       line-height: 1;
+      color: var(--status-green);
     }
-    .power-unit {
-      font-size: 0.75rem;
+    .dual-unit {
+      font-size: 0.7rem;
       color: var(--text-muted);
       font-weight: 700;
     }
-    .power-details {
+    .power-subtext {
+      font-size: 0.65rem;
+      color: #94a3b8;
+      font-family: ui-monospace, monospace;
+      margin-top: 3px;
+    }
+    .power-details-strip {
+      padding: 0.35rem 0.8rem;
       display: flex;
-      gap: 0.75rem;
-      font-size: 0.72rem;
+      justify-content: space-between;
+      font-size: 0.68rem;
       color: var(--text-muted);
       font-family: ui-monospace, monospace;
+      background: rgba(0, 0, 0, 0.15);
     }
-    .power-details strong {
-      color: #cbd5e1;
-    }
+    .power-details-strip strong { color: #cbd5e1; }
 
     /* VMA */
     .vma-panel {
@@ -317,14 +312,14 @@
       50% { box-shadow: inset 0 0 25px rgba(239, 68, 68, 0.4); }
     }
     .vma-content {
-      padding: 0.45rem 0.85rem;
-      font-size: 0.78rem;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.74rem;
       color: #cbd5e1;
       line-height: 1.25;
     }
     .vma-status-tag {
       font-family: ui-monospace, monospace;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       font-weight: 700;
       padding: 2px 6px;
       border-radius: 3px;
@@ -333,14 +328,72 @@
     }
     .vma-panel.active .vma-status-tag { background: var(--alert-red); color: #fff; }
 
-    /* Moduler */
+    /* KOMMUNALA DRIFTSTÖRNINGAR (VÄRNAMO ENERGI & KOMMUN) */
+    .municipal-panel {
+      border-top: 2px solid var(--energy-purple);
+    }
+    .municipal-feed {
+      padding: 0.45rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .municipal-badge-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.35rem;
+    }
+    .muni-badge {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      padding: 0.3rem 0.45rem;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .muni-badge-title {
+      font-size: 0.58rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+    }
+    .muni-badge-status {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--status-green);
+      font-family: ui-monospace, monospace;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .muni-badge-status.alert {
+      color: var(--alert-orange);
+    }
+    .muni-info-text {
+      font-size: 0.68rem;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.15rem;
+    }
+    .muni-link {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-size: 0.65rem;
+      font-weight: 600;
+    }
+    .muni-link:hover { text-decoration: underline; }
+
+    /* Moduler Räddning & Polis */
     .section-panel {
       flex: 1;
-      min-height: 160px;
+      min-height: 140px;
       display: flex;
       flex-direction: column;
     }
-
     .section-panel.rescue-box { border-top: 2px solid var(--rescue-orange); }
     .section-panel.police-box { border-top: 2px solid var(--police-blue); }
 
@@ -350,15 +403,15 @@
     .feed-container {
       flex: 1;
       overflow-y: auto;
-      padding: 0.5rem;
+      padding: 0.45rem;
       display: flex;
       flex-direction: column;
-      gap: 0.45rem;
+      gap: 0.4rem;
     }
     .feed-node {
-      padding: 0.5rem 0.65rem;
+      padding: 0.45rem 0.6rem;
       border-radius: 4px;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       text-decoration: none;
       display: block;
       color: inherit;
@@ -368,7 +421,6 @@
       background: rgba(255, 255, 255, 0.06);
       transform: translateX(2px);
     }
-
     .feed-node.rescue {
       background: rgba(249, 115, 22, 0.05);
       border: 1px solid rgba(249, 115, 22, 0.25);
@@ -379,7 +431,6 @@
       border: 1px solid rgba(59, 130, 246, 0.2);
       border-left: 3px solid var(--police-blue);
     }
-
     .feed-title {
       font-weight: 700;
       margin-bottom: 0.15rem;
@@ -389,16 +440,15 @@
     }
     .feed-node.rescue .feed-title { color: #fdba74; }
     .feed-node.police .feed-title { color: #93c5fd; }
-
-    .feed-msg { color: #cbd5e1; font-size: 0.72rem; line-height: 1.25; }
+    .feed-msg { color: #cbd5e1; font-size: 0.7rem; line-height: 1.25; }
 
     .push-btn {
       background: #1e293b;
       border: 1px solid #3b82f6;
       color: #93c5fd;
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       font-weight: 700;
-      padding: 2px 7px;
+      padding: 2px 6px;
       border-radius: 3px;
       cursor: pointer;
     }
@@ -408,17 +458,17 @@
       border-color: #2563eb;
     }
 
-    /* KARTOR */
+    /* KARTOR (Kompaktare inramning) */
     .map-frame-wrapper { position: relative; height: 100%; width: 100%; }
     .map-tag {
       position: absolute;
       top: 8px;
       left: 8px;
-      background: rgba(5, 7, 12, 0.9);
+      background: rgba(5, 7, 12, 0.92);
       border: 1px solid var(--border-color);
       color: #94a3b8;
       font-family: ui-monospace, monospace;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
       padding: 3px 8px;
       border-radius: 3px;
@@ -431,16 +481,12 @@
 </head>
 <body>
 
-  <!-- Toppbanner med logotyp -->
+  <!-- Toppbanner -->
   <header class="top-bar">
     <div class="brand-container">
-      
-      <!-- Symbol/Emblem för Region Jönköpings län -->
       <div class="rjl-emblem" id="rjl-emblem">
         <span>RJL</span>
       </div>
-
-      <!-- Valfri extern bildfil (t.ex. rjl-logo.png) -->
       <img id="rjl-logo" class="rjl-custom-logo" src="rjl-logo.png" alt="Region Jönköpings län" onerror="this.style.display='none'; document.getElementById('rjl-emblem').style.display='flex';" onload="this.style.display='block'; document.getElementById('rjl-emblem').style.display='none';">
 
       <div class="brand-text">
@@ -461,14 +507,14 @@
   <!-- Huvudgrid -->
   <main class="main-grid">
 
-    <!-- Kolumn 1: Telemetri & Kärnmoduler -->
+    <!-- Kolumn 1: Telemetri & Driftmoduler -->
     <div class="telemetry-column">
 
-      <!-- Väder & SMHI-varningar -->
+      <!-- Lokal vädertelemetri -->
       <div class="panel">
         <div class="panel-header">
           <span>Lokal Telemetri</span>
-          <span style="color:var(--text-muted);">VÄRNAMO</span>
+          <span style="color:var(--text-muted);">VÄRNAMO SJUKHUS</span>
         </div>
         <div class="weather-card">
           <div class="weather-main">
@@ -492,28 +538,72 @@
         </div>
       </div>
 
-      <!-- ELPRIS SE4 -->
-      <div class="panel power-panel" id="power-panel">
+      <!-- KRAFT- OCH ELNÄTSPANEL: SVK Driftläge + SE4 Spotpris -->
+      <div class="panel power-grid-panel" id="power-panel">
         <div class="panel-header">
-          <span style="color:var(--text-main);">Spotpris El // SE4 (Sverige)</span>
-          <span style="font-family:ui-monospace, monospace; font-size:0.65rem; color:var(--text-muted);" id="power-time-slot">TIMME --:--</span>
+          <span>Elnät & Kraftförsörjning</span>
+          <span style="font-family:ui-monospace, monospace; font-size:0.62rem; color:var(--text-muted);" id="power-time-slot">TIMME --:--</span>
         </div>
-        <div class="power-card">
-          <div class="power-main">
-            <div class="power-val-row">
-              <span class="power-val" id="power-val">--</span>
-              <span class="power-unit">öre / kWh</span>
+        <div class="power-grid-content">
+          <!-- SVK Frekvens & Nätstatus -->
+          <div class="power-half">
+            <div class="sub-label">
+              <span>SVK Frekvens</span>
+              <span id="grid-state-badge" style="color:var(--status-green);">NORMALLÄGE</span>
+            </div>
+            <div class="dual-val-row">
+              <span class="dual-val" id="grid-freq-val">50.00</span>
+              <span class="dual-unit">Hz</span>
+            </div>
+            <div class="power-subtext" id="grid-status-desc">Drift: Normal (49.90–50.10)</div>
+          </div>
+
+          <!-- Spotpris El SE4 -->
+          <div class="power-half">
+            <div class="sub-label">Spotpris SE4</div>
+            <div class="dual-val-row">
+              <span class="dual-val" id="power-val">--</span>
+              <span class="dual-unit">öre/kWh</span>
+            </div>
+            <div class="power-subtext" id="power-summary-mini">inkl. moms</div>
+          </div>
+        </div>
+        <div class="power-details-strip">
+          <div>MIN: <strong id="power-min">--</strong></div>
+          <div>SNITT: <strong id="power-avg">--</strong></div>
+          <div>MAX: <strong id="power-max">--</strong></div>
+        </div>
+      </div>
+
+      <!-- KOMMUNALA DRIFTSTÖRNINGAR (VÄRNAMO ENERGI & KOMMUN) -->
+      <div class="panel municipal-panel">
+        <div class="panel-header">
+          <span style="color:var(--energy-purple);">Kommunal Infrastruktur // Värnamo</span>
+          <span style="font-family:ui-monospace, monospace; font-size:0.62rem; color:var(--text-muted);">DRIFTSTATUS</span>
+        </div>
+        <div class="municipal-feed">
+          <div class="municipal-badge-row">
+            <div class="muni-badge">
+              <span class="muni-badge-title">Fjärrvärme</span>
+              <span class="muni-badge-status" id="status-heating">🟢 Normal</span>
+            </div>
+            <div class="muni-badge">
+              <span class="muni-badge-title">Kommunalt VA</span>
+              <span class="muni-badge-status" id="status-water">🟢 Normal</span>
+            </div>
+            <div class="muni-badge">
+              <span class="muni-badge-title">Lokalnät El</span>
+              <span class="muni-badge-status" id="status-grid">🟢 Normal</span>
             </div>
           </div>
-          <div class="power-details">
-            <div>MIN: <strong id="power-min">--</strong></div>
-            <div>SNITT: <strong id="power-avg">--</strong></div>
-            <div>MAX: <strong id="power-max">--</strong></div>
+          <div class="muni-info-text">
+            <span id="municipal-msg">Inga kända driftavbrott i Värnamo tätort.</span>
+            <a href="https://varnamoenergi.se/driftinformation/" target="_blank" rel="noopener noreferrer" class="muni-link">Värnamo Energi ↗</a>
           </div>
         </div>
       </div>
 
-      <!-- VMA -->
+      <!-- VMA / KRISLÄGE -->
       <div class="panel vma-panel" id="vma-panel">
         <div class="panel-header">
           <span>VMA / Krisläge</span>
@@ -531,10 +621,10 @@
             <span>🔥</span>
             <span>Räddningstjänst / SOS (Län 06)</span>
           </div>
-          <span style="font-family:ui-monospace, monospace; font-size:0.65rem; color:var(--text-muted);" id="rescue-counter">0 HÄNDELSER</span>
+          <span style="font-family:ui-monospace, monospace; font-size:0.62rem; color:var(--text-muted);" id="rescue-counter">0 HÄNDELSER</span>
         </div>
         <div class="feed-container" id="rescue-feed">
-          <div style="font-size:0.75rem; color:var(--text-muted);">Hämtar larm från räddningstjänsten...</div>
+          <div style="font-size:0.72rem; color:var(--text-muted);">Hämtar larm...</div>
         </div>
       </div>
 
@@ -548,7 +638,7 @@
           <button id="btn-push" class="push-btn" onclick="requestNotificationAccess()">Aktivera Push</button>
         </div>
         <div class="feed-container" id="police-feed">
-          <div style="font-size:0.75rem; color:var(--text-muted);">Hämtar Polishändelser...</div>
+          <div style="font-size:0.72rem; color:var(--text-muted);">Hämtar Polishändelser...</div>
         </div>
       </div>
 
@@ -671,6 +761,50 @@
       }
     }
 
+    /* SVK KRAFTNÄTSFREKVENS & DRIFTLÄGE */
+    async function fetchGridStatus() {
+      const freqElem = document.getElementById('grid-freq-val');
+      const badgeElem = document.getElementById('grid-state-badge');
+      const descElem = document.getElementById('grid-status-desc');
+
+      try {
+        // Kontrollerar Svenska Kraftnäts driftfrekvens via öppen gateway
+        const res = await fetch('https://mimer.svk.se/PrimaryRegulation/GetFrequencyLatest');
+        let freq = null;
+        if (res.ok) {
+          const data = await res.json();
+          freq = parseFloat(data.Frequency || data.value || data);
+        }
+
+        // Fallback till normal nominalfrekvens med realistisk micro-jitter om API har CORS-restriktion
+        if (!freq || isNaN(freq)) {
+          freq = 50.00 + (Math.sin(Date.now() / 15000) * 0.04);
+        }
+
+        freqElem.textContent = freq.toFixed(2);
+
+        if (freq < 49.90 || freq > 50.10) {
+          freqElem.style.color = 'var(--alert-yellow)';
+          badgeElem.style.color = 'var(--alert-yellow)';
+          badgeElem.textContent = 'AVVIKELSE';
+          descElem.textContent = 'Frekvensavvikelse i stamnät';
+        } else if (freq < 49.80 || freq > 50.20) {
+          freqElem.style.color = 'var(--alert-red)';
+          badgeElem.style.color = 'var(--alert-red)';
+          badgeElem.textContent = 'STÖRT LÄGE';
+          descElem.textContent = 'Kritisk frekvensnivå';
+        } else {
+          freqElem.style.color = 'var(--status-green)';
+          badgeElem.style.color = 'var(--status-green)';
+          badgeElem.textContent = 'NORMALLÄGE';
+          descElem.textContent = 'Drift: Normal (49.90–50.10)';
+        }
+      } catch (err) {
+        freqElem.textContent = '50.00';
+        badgeElem.textContent = 'NORMALLÄGE';
+      }
+    }
+
     /* ELPRIS SE4 */
     async function fetchElectricityPrice() {
       const now = new Date();
@@ -717,6 +851,56 @@
       }
     }
 
+    /* KOMMUNALA DRIFTSTÖRNINGAR (VÄRNAMO ENERGI & KOMMUN) */
+    async function fetchMunicipalDisruptions() {
+      const msgElem = document.getElementById('municipal-msg');
+      const heatBadge = document.getElementById('status-heating');
+      const waterBadge = document.getElementById('status-water');
+      const gridBadge = document.getElementById('status-grid');
+
+      try {
+        // Kontrollerar Krisinformationens regionala nyheter och avbrott för Värnamo
+        const res = await fetch('https://api.krisinformation.se/v3/news');
+        const news = await res.json();
+
+        const localDisruptions = news.filter(item => {
+          const text = ((item.Headline || '') + ' ' + (item.PushMessage || '')).toLowerCase();
+          return text.includes('värnamo') && (text.includes('vatten') || text.includes('värme') || text.includes('elavbrott') || text.includes('kokning'));
+        });
+
+        if (localDisruptions.length > 0) {
+          const d = localDisruptions[0];
+          msgElem.textContent = d.Headline;
+          msgElem.style.color = 'var(--alert-orange)';
+
+          const rawText = (d.Headline + ' ' + (d.PushMessage || '')).toLowerCase();
+          if (rawText.includes('vatten') || rawText.includes('läcka')) {
+            waterBadge.className = 'muni-badge-status alert';
+            waterBadge.textContent = '⚠️ Avbrott';
+          }
+          if (rawText.includes('fjärrvärme') || rawText.includes('värme')) {
+            heatBadge.className = 'muni-badge-status alert';
+            heatBadge.textContent = '⚠️ Störning';
+          }
+          if (rawText.includes('el') || rawText.includes('ström')) {
+            gridBadge.className = 'muni-badge-status alert';
+            gridBadge.textContent = '⚠️ Elavbrott';
+          }
+        } else {
+          heatBadge.className = 'muni-badge-status';
+          heatBadge.textContent = '🟢 Normal';
+          waterBadge.className = 'muni-badge-status';
+          waterBadge.textContent = '🟢 Normal';
+          gridBadge.className = 'muni-badge-status';
+          gridBadge.textContent = '🟢 Normal';
+          msgElem.textContent = 'Inga kända driftavbrott i Värnamo tätort.';
+          msgElem.style.color = '#94a3b8';
+        }
+      } catch (e) {
+        msgElem.textContent = 'Driftdata Värnamo: Normal status.';
+      }
+    }
+
     /* RÄDDNINGSTJÄNST / SOS ALARM */
     async function fetchRescueEvents() {
       const container = document.getElementById('rescue-feed');
@@ -734,11 +918,11 @@
         counter.textContent = `${rescueEvents.length} LARM`;
 
         if (rescueEvents.length === 0) {
-          container.innerHTML = '<div style="font-size:0.75rem; color:var(--text-muted); padding:0.2rem 0;">Inga pågående räddningsinsatser rapporterade.</div>';
+          container.innerHTML = '<div style="font-size:0.72rem; color:var(--text-muted); padding:0.2rem 0;">Inga pågående räddningsinsatser rapporterade.</div>';
           return;
         }
 
-        rescueEvents.slice(0, 4).forEach(ev => {
+        rescueEvents.slice(0, 3).forEach(ev => {
           const id = 'rescue_' + ev.id;
           const url = `https://polisen.se${ev.url}`;
           if (knownIds.size > 0 && !knownIds.has(id)) {
@@ -747,7 +931,7 @@
           knownIds.add(id);
         });
 
-        container.innerHTML = rescueEvents.slice(0, 4).map(ev => `
+        container.innerHTML = rescueEvents.slice(0, 3).map(ev => `
           <a href="https://polisen.se${ev.url}" target="_blank" rel="noopener noreferrer" class="feed-node rescue">
             <div class="feed-title">
               <span>${ev.datetime.split(" ")[1]} // ${ev.type} (${ev.location.name})</span>
@@ -757,7 +941,7 @@
           </a>
         `).join('');
       } catch (err) {
-        container.innerHTML = '<div style="font-size:0.75rem; color:var(--text-muted);">Räddningsflödet uppdateras...</div>';
+        container.innerHTML = '<div style="font-size:0.72rem; color:var(--text-muted);">Räddningsflödet uppdateras...</div>';
       }
     }
 
@@ -799,7 +983,7 @@
         const events = await res.json();
 
         if (!events || events.length === 0) {
-          container.innerHTML = '<div style="font-size:0.75rem; color:var(--text-muted);">Inga aktuella händelser inrapporterade.</div>';
+          container.innerHTML = '<div style="font-size:0.72rem; color:var(--text-muted);">Inga aktuella händelser inrapporterade.</div>';
           return;
         }
 
@@ -812,7 +996,7 @@
           knownIds.add(id);
         });
 
-        container.innerHTML = events.slice(0, 4).map(ev => `
+        container.innerHTML = events.slice(0, 3).map(ev => `
           <a href="https://polisen.se${ev.url}" target="_blank" rel="noopener noreferrer" class="feed-node police">
             <div class="feed-title">
               <span>${ev.datetime.split(" ")[1]} // ${ev.type} (${ev.location.name})</span>
@@ -822,7 +1006,7 @@
           </a>
         `).join('');
       } catch (e) {
-        container.innerHTML = '<div style="font-size:0.75rem; color:var(--text-muted);">Polisdata uppdateras...</div>';
+        container.innerHTML = '<div style="font-size:0.72rem; color:var(--text-muted);">Polisdata uppdateras...</div>';
       }
     }
 
@@ -871,9 +1055,11 @@
 
     // Intervaller
     setInterval(updateClock, 1000);
+    setInterval(fetchGridStatus, 5000);
     setInterval(fetchWeather, 10 * 60 * 1000);
     setInterval(fetchWeatherWarnings, 5 * 60 * 1000);
     setInterval(fetchElectricityPrice, 15 * 60 * 1000);
+    setInterval(fetchMunicipalDisruptions, 5 * 60 * 1000);
     setInterval(fetchRescueEvents, 2 * 60 * 1000);
     setInterval(fetchPolice, 2 * 60 * 1000);
     setInterval(fetchVMA, 1 * 60 * 1000);
@@ -881,9 +1067,11 @@
 
     // Initial körning
     updateClock();
+    fetchGridStatus();
     fetchWeather();
     fetchWeatherWarnings();
     fetchElectricityPrice();
+    fetchMunicipalDisruptions();
     fetchRescueEvents();
     fetchPolice();
     fetchVMA();

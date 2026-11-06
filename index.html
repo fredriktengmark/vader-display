@@ -257,7 +257,7 @@
       50% { opacity: 0.7; }
     }
 
-    /* ELPRIS SE3 */
+    /* ELPRIS SE4 */
     .power-panel {
       border-top: 2px solid var(--status-green);
     }
@@ -492,10 +492,10 @@
         </div>
       </div>
 
-      <!-- ELPRIS SE3 -->
+      <!-- ELPRIS SE4 -->
       <div class="panel power-panel" id="power-panel">
         <div class="panel-header">
-          <span style="color:var(--text-main);">Spotpris El // SE3 (Sverige)</span>
+          <span style="color:var(--text-main);">Spotpris El // SE4 (Sverige)</span>
           <span style="font-family:ui-monospace, monospace; font-size:0.65rem; color:var(--text-muted);" id="power-time-slot">TIMME --:--</span>
         </div>
         <div class="power-card">
@@ -566,13 +566,13 @@
       </div>
     </div>
 
-    <!-- Kolumn 3: Satellitkarta Åska (Zoom 5.8) -->
+    <!-- Kolumn 3: Snödjupskarta (Zoom 5.8) -->
     <div class="panel">
       <div class="map-frame-wrapper">
-        <div class="map-tag">SATELLIT // BLIXTAR & ÅSKA (ZOOM 5.8)</div>
+        <div class="map-tag">SATELLIT // SNÖDJUP (ZOOM 5.8)</div>
         <iframe 
-          id="lightning-frame"
-          src="https://map.blitzortung.org/index.php?interactive=1&MapStyle=2#5.8/57.186/14.040" 
+          id="snow-frame"
+          src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m%2Fs&metricSnow=cm&zoom=5.8&overlay=snowcover&product=ecmwf&level=surface&lat=57.186&lon=14.040" 
           loading="lazy">
         </iframe>
       </div>
@@ -671,7 +671,7 @@
       }
     }
 
-    /* ELPRIS SE3 */
+    /* ELPRIS SE4 */
     async function fetchElectricityPrice() {
       const now = new Date();
       const year = now.getFullYear();
@@ -679,7 +679,7 @@
       const day = String(now.getDate()).padStart(2, '0');
 
       try {
-        const res = await fetch(`https://www.elprisetjustnu.se/api/v1/prices/${year}/${month}-${day}_SE3.json`);
+        const res = await fetch(`https://www.elprisetjustnu.se/api/v1/prices/${year}/${month}-${day}_SE4.json`);
         const prices = await res.json();
 
         if (!prices || prices.length === 0) return;
@@ -864,9 +864,9 @@
 
     function refreshMaps() {
       const radar = document.getElementById('radar-frame');
-      const lightning = document.getElementById('lightning-frame');
+      const snow = document.getElementById('snow-frame');
       if (radar) radar.src = radar.src;
-      if (lightning) lightning.src = lightning.src;
+      if (snow) snow.src = snow.src;
     }
 
     // Intervaller
